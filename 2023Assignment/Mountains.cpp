@@ -21,17 +21,17 @@ Mountains::Mountains(std::vector<std::string>& filenames)
             lines.push_back(line);
         }
 
-        while (getline(file2, line))  //getline returns false at end of file
+        while (getline(file2, line))  
         {
             lines.push_back(line);
         }
 
-        while (getline(file3, line))  //getline returns false at end of file
+        while (getline(file3, line))  
         {
             lines.push_back(line);
         }
 
-        while (getline(file4, line))  //getline returns false at end of file
+        while (getline(file4, line))  
         {
             lines.push_back(line);
         }
@@ -43,7 +43,7 @@ Mountains::Mountains(std::vector<std::string>& filenames)
 
 std::string Mountains::getRandomMountain()
 {
-    return""
+    return" ";
 }
 
 bool Mountains::checkRange(std::string mountain, std::string range)
