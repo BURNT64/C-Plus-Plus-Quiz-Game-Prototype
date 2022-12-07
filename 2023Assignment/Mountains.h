@@ -1,15 +1,16 @@
 #pragma once
-#include<vector>
-#include<string>
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
 
 class Mountains
 {
 public:
 	//Time complexity: 
 	Mountains(std::vector<std::string>& filenames);
-
+	
 	//Time complexity:
 	std::string getRandomMountain();
 
