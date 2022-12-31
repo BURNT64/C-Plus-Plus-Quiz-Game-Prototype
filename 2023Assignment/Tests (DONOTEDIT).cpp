@@ -7,8 +7,6 @@
 #include <boost/test/data/test_case.hpp>
 namespace bdata = boost::unit_test::data;
 
-
-
 std::vector<std::string> files = { "Alps.txt", "Carpathians.txt", "Icelandic Highlands.txt", "Pyrenees.txt" };
 std::map<std::string, std::vector<std::string> > editeddata = { {"Alps", { "Dom","Olan","Scopi","Piz Bernina","Grivola","Marmolada"}},
 																						  {"Pyrenees",{"Aneto", "Taga", "Monte Perdido", "Pedraforca","Cerbillona", "Espadas Peak"}},

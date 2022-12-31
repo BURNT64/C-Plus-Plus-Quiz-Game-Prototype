@@ -1,52 +1,56 @@
 #include "Mountains.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <sstream>
 #include <vector>
 #include <string>
+#include <random>
 
 using namespace std;
 
+std::vector<std::string> mountains;
+std::vector<std::string> textFiles;
+
 Mountains::Mountains(std::vector<std::string>& filenames)
 {
-    int main();
+    for (const std::string& filename : filenames)
     {
-        ifstream file1("Alps.txt");
-        ifstream file2("Carpathians.txt");
-        ifstream file3("Icelandic Highlands.txt");
-        ifstream file4("Pyrenees.txt");//gets an input file stream to read file
-        vector<string> lines;       //vector to store each line from the file
-        string line;                //temp storage for each line
-        while (getline(file1, line))  //getline returns false at end of file
-        {
-            lines.push_back(line);
-        }
+        std::ifstream file(filename);
+        std::string line;
 
-        while (getline(file2, line))  
+        while (std::getline(file, line))
         {
-            lines.push_back(line);
+            textFiles.push_back(line);
         }
+        file.close();
+    }
 
-        while (getline(file3, line))  
-        {
-            lines.push_back(line);
-        }
-
-        while (getline(file4, line))  
-        {
-            lines.push_back(line);
-        }
-
-        for (auto i : lines)
-            cout << i << endl;
+    for (const std::string& line : textFiles)
+    {
+        mountains.push_back(line);
     }
 }
 
 std::string Mountains::getRandomMountain()
 {
-    return" ";
+    static std::random_device rd;
+    static std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, mountains.size() - 1);
+
+    return mountains[dist(mt)];
 }
 
 bool Mountains::checkRange(std::string mountain, std::string range)
 {
-	return true;
+        for (const std::string& mtn : mountains)
+    {
+        if (mtn == mountain && mtn.find(range) != std::string::npos)
+        {
+            // The mountain is present in the range, so return true
+            return true;
+        }
+    }
+    // If we reach here, the mountain was not found in the range, so return false
+    return false;
 }
