@@ -5,6 +5,9 @@ using namespace std;
 
 class Mountains
 {
+	std::vector<std::string> mountains;
+	std::vector<std::string> textFiles;
+
 public:
 	//Time complexity: 
 	Mountains(std::vector<std::string>& filenames);

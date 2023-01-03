@@ -9,9 +9,6 @@
 
 using namespace std;
 
-std::vector<std::string> mountains;
-std::vector<std::string> textFiles;
-
 Mountains::Mountains(std::vector<std::string>& filenames)
 {
     for (const std::string& filename : filenames)
@@ -34,11 +31,17 @@ Mountains::Mountains(std::vector<std::string>& filenames)
 
 std::string Mountains::getRandomMountain()
 {
-    static std::random_device rd;
-    static std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, mountains.size() - 1);
-
-    return mountains[dist(mt)];
+    static bool seeded = false;
+    // seed the random number generator if it has not been seeded yet
+    if (!seeded)
+    {
+        srand(0); // seed the generator with a fixed value
+        seeded = true; // set the seeded flag to true to prevent reseeding
+    }
+    // generate a random index within the range of the mountain names vector
+    int randomIndex = rand() % mountains.size();
+    // return the mountain name at the random index
+    return mountains[randomIndex];
 }
 
 bool Mountains::checkRange(std::string mountain, std::string range)
@@ -54,3 +57,11 @@ bool Mountains::checkRange(std::string mountain, std::string range)
     // If we reach here, the mountain was not found in the range, so return false
     return false;
 }
+
+
+//static std::random_device rd;
+//static std::mt19937 mt(rd());
+//std::uniform_int_distribution<int> dist(0, mountains.size() - 1);
+//return mountains[dist(mt)];
+
+//use commented code for second assignment
