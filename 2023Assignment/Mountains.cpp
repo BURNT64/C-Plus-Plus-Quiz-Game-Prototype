@@ -46,17 +46,31 @@ std::string Mountains::getRandomMountain()
 
 bool Mountains::checkRange(std::string mountain, std::string range)
 {
-        for (const std::string& mtn : mountains)
+    std::string lowerRange = range;
+    std::transform(lowerRange.begin(), lowerRange.end(), lowerRange.begin(), ::tolower);
+
+    for (const std::string& mtn : mountains)
     {
-        if (mtn == mountain && mtn.find(range) != std::string::npos)
+        std::string lowerMtn = mtn;
+        std::transform(lowerMtn.begin(), lowerMtn.end(), lowerMtn.begin(), ::tolower);
+
+        if (lowerMtn == mountain)
         {
-            // The mountain is present in the range, so return true
-            return true;
+            std::stringstream mountainStream(mtn);
+            std::string mountainRange;
+            while (mountainStream >> mountainRange)
+            {
+                if (mountainRange.find(range) != std::string::npos)
+                {
+                    return true;
+                }
+            }
         }
     }
-    // If we reach here, the mountain was not found in the range, so return false
+
     return false;
 }
+
 
 
 //static std::random_device rd;
