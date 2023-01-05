@@ -6,7 +6,10 @@ using namespace std;
 class Mountains
 {
 	std::vector<std::string> mountains;
-	std::vector<std::string> textFiles;
+	std::vector<std::string> Alps;
+	std::vector<std::string> Icelandic_Highlands;
+	std::vector<std::string> Carpathians;
+	std::vector<std::string> Pyrenees;
 
 public:
 	//Time complexity: Mountains is O(n) where n is the total number of lines in the input files. 

@@ -18,14 +18,21 @@ Mountains::Mountains(std::vector<std::string>& filenames)
 
         while (std::getline(file, line))
         {
-            textFiles.push_back(line);
+            if (filename == "Alps.txt")
+                Alps.push_back(line);
+
+            if (filename == "Carpathians.txt")
+                Carpathians.push_back(line);
+
+            if (filename == "Icelandic Highlands.txt")
+                Icelandic_Highlands.push_back(line);
+            
+            if (filename == "Pyrenees.txt")
+                Pyrenees.push_back(line);
+
+            mountains.push_back(line);
         }
         file.close();
-    }
-
-    for (const std::string& line : textFiles)
-    {
-        mountains.push_back(line);
     }
 }
 
@@ -46,6 +53,7 @@ std::string Mountains::getRandomMountain()
 
 bool Mountains::checkRange(std::string mountain, std::string range)
 {
+    //if statements on the different ranges
     std::string lowerRange = range;
     std::transform(lowerRange.begin(), lowerRange.end(), lowerRange.begin(), ::tolower);
 
