@@ -11,6 +11,7 @@ using namespace std;
 
 Mountains::Mountains(std::vector<std::string>& filenames)
 {
+    // Iterate through the filenames vector using a range-based for loop
     for (const std::string& filename : filenames)
     {
         std::ifstream file(filename);
@@ -18,6 +19,8 @@ Mountains::Mountains(std::vector<std::string>& filenames)
 
         while (std::getline(file, line))
         {
+            // Check the value of filename and add the line string to the appropriate
+
             if (filename == "Alps.txt")
                 Alps.push_back(line);
 
@@ -29,6 +32,9 @@ Mountains::Mountains(std::vector<std::string>& filenames)
             
             if (filename == "Pyrenees.txt")
                 Pyrenees.push_back(line);
+
+            // Add the line string to the "mountains" vector, which contains all of the
+            // mountains from all of the mountain range files
 
             mountains.push_back(line);
         }
@@ -53,37 +59,26 @@ std::string Mountains::getRandomMountain()
 
 bool Mountains::checkRange(std::string mountain, std::string range)
 {
-    //if statements on the different ranges
-    std::string lowerRange = range;
-    std::transform(lowerRange.begin(), lowerRange.end(), lowerRange.begin(), ::tolower);
+    // Create a pointer to a vector of strings called "rangeVector" and initialize it to null
+    std::vector<std::string>* rangeVector;
 
-    for (const std::string& mtn : mountains)
+    // Check the value of the "range" string and set "rangeVector" to point to the
+    // appropriate mountain range vector based on the value of "range"
+    if (range == "Alps")
+        rangeVector = &Alps;
+    else if (range == "Icelandic Highlands")
+        rangeVector = &Icelandic_Highlands;
+    else if (range == "Carpathians")
+        rangeVector = &Carpathians;
+    else if (range == "Pyrenees")
+        rangeVector = &Pyrenees;
+    else
+        return false;
+
+    for (const std::string& m : *rangeVector)
     {
-        std::string lowerMtn = mtn;
-        std::transform(lowerMtn.begin(), lowerMtn.end(), lowerMtn.begin(), ::tolower);
-
-        if (lowerMtn == mountain)
-        {
-            std::stringstream mountainStream(mtn);
-            std::string mountainRange;
-            while (mountainStream >> mountainRange)
-            {
-                if (mountainRange.find(range) != std::string::npos)
-                {
-                    return true;
-                }
-            }
-        }
+        if (m == mountain)
+            return true;
     }
-
     return false;
 }
-
-
-
-//static std::random_device rd;
-//static std::mt19937 mt(rd());
-//std::uniform_int_distribution<int> dist(0, mountains.size() - 1);
-//return mountains[dist(mt)];
-
-//use commented code for second assignment
